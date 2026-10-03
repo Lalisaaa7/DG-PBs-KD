@@ -1,0 +1,767 @@
+{
+  "DNA-573_Train": {
+    "model_name": "DNA-573_Train_strict_diffusion_noleak",
+    "model_type": "Strict Fold-internal Diffusion Augmentation + 3-Fold Ensemble Robust GNN + Validation-fixed Threshold",
+    "training_info": {
+      "original_positive": 13881,
+      "original_negative": 126647,
+      "original_ratio": 0.09877746783559148,
+      "avg_augmented_ratio": 0.16251191661874909,
+      "target_ratio": 0.3,
+      "cv_avg_f1": 0.532169137268146,
+      "cv_avg_mcc": 0.4795877870033855,
+      "cv_avg_auc": 0.5129601750656182,
+      "best_cv_f1": 0.5614353026458861,
+      "best_cv_mcc": 0.508817399701111,
+      "best_cv_auc": 0.5382173526748961,
+      "fixed_threshold_from_validation": 0.45,
+      "fold_thresholds": [
+        0.35000000000000003,
+        0.5000000000000001,
+        0.5000000000000001
+      ],
+      "ensemble_type": "mean_probability_from_all_cv_fold_models",
+      "threshold_metric": "mcc",
+      "gnn_time": 2630.886565208435,
+      "total_time": 2630.886565208435
+    },
+    "augmentation_summary": {
+      "strict_diffusion": 0,
+      "relaxed_diffusion": 1114,
+      "failed_no_aug": 0,
+      "generated_nodes": 21396,
+      "fallback": 0,
+      "note": "All added synthetic nodes come from diffusion_model.generate_positive_sample; no real-positive copying fallback is used."
+    },
+    "robust_config": {
+      "quality_threshold": 0.7,
+      "diversity_threshold": 0.3,
+      "domain_weight": 0.1,
+      "cv_folds": 3,
+      "max_augment_ratio": 1.0,
+      "max_generated_per_protein": 64,
+      "target_ratio": 0.3,
+      "graph_metric": "cosine similarity KNN in ESM-2 embedding space",
+      "leakage_control": "diffusion, augmentation and threshold selection are fold-internal; test uses fixed validation threshold"
+    },
+    "cv_results": [
+      {
+        "val_f1": 0.5195493704440026,
+        "val_mcc": 0.468751063831513,
+        "val_auc": 0.4965531075674984,
+        "threshold": 0.35000000000000003,
+        "augmented_ratio": 0.1664184477606052,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 371,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 7258
+        }
+      },
+      {
+        "val_f1": 0.5614353026458861,
+        "val_mcc": 0.508817399701111,
+        "val_auc": 0.5382173526748961,
+        "threshold": 0.5000000000000001,
+        "augmented_ratio": 0.1588956501689206,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 371,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 6874
+        }
+      },
+      {
+        "val_f1": 0.5155227387145493,
+        "val_mcc": 0.4611948974775325,
+        "val_auc": 0.5041100649544604,
+        "threshold": 0.5000000000000001,
+        "augmented_ratio": 0.16222165192672142,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 372,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 7264
+        }
+      }
+    ],
+    "test_results": {
+      "DNA-129_Test": {
+        "f1": 0.4746666666666667,
+        "mcc": 0.44156253001636836,
+        "auc_pr": 0.4515977851168988,
+        "accuracy": 0.9264827402372384,
+        "balanced_accuracy": 0.7531214564138908,
+        "precision": 0.413953488372093,
+        "recall": 0.55625,
+        "sensitivity": 0.55625,
+        "specificity": 0.9499929128277818,
+        "auc_roc": 0.9060351827477978,
+        "threshold": 0.45,
+        "confusion_matrix": {
+          "tp": 1246,
+          "tn": 33511,
+          "fp": 1764,
+          "fn": 994
+        },
+        "total_samples": 37515,
+        "positive_samples": 2240,
+        "negative_samples": 35275,
+        "positive_ratio": 0.05970944955351193
+      },
+      "DNA-181_Test": {
+        "f1": 0.3689847639161261,
+        "mcc": 0.3361061392648561,
+        "auc_pr": 0.3139613632300756,
+        "accuracy": 0.9225226893869235,
+        "balanced_accuracy": 0.7009269930655008,
+        "precision": 0.31040609137055836,
+        "recall": 0.45481591669765714,
+        "sensitivity": 0.45481591669765714,
+        "specificity": 0.9470380694333443,
+        "auc_roc": 0.8716765188174833,
+        "threshold": 0.45,
+        "confusion_matrix": {
+          "tp": 1223,
+          "tn": 48584,
+          "fp": 2717,
+          "fn": 1466
+        },
+        "total_samples": 53990,
+        "positive_samples": 2689,
+        "negative_samples": 51301,
+        "positive_ratio": 0.04980551954065568
+      },
+      "DNA-46_Test": {
+        "f1": 0.5746451297112091,
+        "mcc": 0.531693367940736,
+        "auc_pr": 0.5338191752345484,
+        "accuracy": 0.9200993012136816,
+        "balanced_accuracy": 0.7793746206523029,
+        "precision": 0.5445269016697588,
+        "recall": 0.6082901554404145,
+        "sensitivity": 0.6082901554404145,
+        "specificity": 0.9504590858641913,
+        "auc_roc": 0.9057010502278569,
+        "threshold": 0.45,
+        "confusion_matrix": {
+          "tp": 587,
+          "tn": 9420,
+          "fp": 491,
+          "fn": 378
+        },
+        "total_samples": 10876,
+        "positive_samples": 965,
+        "negative_samples": 9911,
+        "positive_ratio": 0.08872747333578522
+      }
+    },
+    "new_test_results": {
+      "PDNA-316-test": {
+        "f1": 0.5232873002978607,
+        "mcc": 0.4905216488578752,
+        "auc_pr": 0.5004992203615211,
+        "accuracy": 0.9031601529194972,
+        "balanced_accuracy": 0.8050624718294173,
+        "precision": 0.4218050856706319,
+        "recall": 0.6890711356748084,
+        "sensitivity": 0.6890711356748084,
+        "specificity": 0.921053807984026,
+        "auc_roc": 0.9212257740492652,
+        "threshold": 0.45,
+        "confusion_matrix": {
+          "tp": 3865,
+          "tn": 61811,
+          "fp": 5298,
+          "fn": 1744
+        },
+        "total_samples": 72718,
+        "positive_samples": 5609,
+        "negative_samples": 67109,
+        "positive_ratio": 0.07713358453202783
+      },
+      "PDNA-335-test": {
+        "f1": 0.5559986923831317,
+        "mcc": 0.5159509287718668,
+        "auc_pr": 0.5261474422004045,
+        "accuracy": 0.9095461992354517,
+        "balanced_accuracy": 0.7991990903340604,
+        "precision": 0.47705598563895435,
+        "recall": 0.6662488248198057,
+        "sensitivity": 0.6662488248198057,
+        "specificity": 0.932149355848315,
+        "auc_roc": 0.9246191813996482,
+        "threshold": 0.45,
+        "confusion_matrix": {
+          "tp": 4252,
+          "tn": 64034,
+          "fp": 4661,
+          "fn": 2130
+        },
+        "total_samples": 75077,
+        "positive_samples": 6382,
+        "negative_samples": 68695,
+        "positive_ratio": 0.0850060604446102
+      },
+      "PDNA-41-test": {
+        "f1": 0.48255813953488375,
+        "mcc": 0.4486355315692405,
+        "auc_pr": 0.456121521911658,
+        "accuracy": 0.9264614749018798,
+        "balanced_accuracy": 0.7547033569260682,
+        "precision": 0.42455242966751916,
+        "recall": 0.5589225589225589,
+        "sensitivity": 0.5589225589225589,
+        "specificity": 0.9504841549295775,
+        "auc_roc": 0.9225535504694834,
+        "threshold": 0.45,
+        "confusion_matrix": {
+          "tp": 332,
+          "tn": 8638,
+          "fp": 450,
+          "fn": 262
+        },
+        "total_samples": 9682,
+        "positive_samples": 594,
+        "negative_samples": 9088,
+        "positive_ratio": 0.06135096054534187
+      },
+      "PDNA-52-test": {
+        "f1": 0.5149313962873285,
+        "mcc": 0.48987612895080096,
+        "auc_pr": 0.4516029426410011,
+        "accuracy": 0.919566381156317,
+        "balanced_accuracy": 0.8046316427960731,
+        "precision": 0.4169934640522876,
+        "recall": 0.6729957805907173,
+        "sensitivity": 0.6729957805907173,
+        "specificity": 0.936267505001429,
+        "auc_roc": 0.9261119512145122,
+        "threshold": 0.45,
+        "confusion_matrix": {
+          "tp": 638,
+          "tn": 13104,
+          "fp": 892,
+          "fn": 310
+        },
+        "total_samples": 14944,
+        "positive_samples": 948,
+        "negative_samples": 13996,
+        "positive_ratio": 0.06343683083511777
+      }
+    }
+  },
+  "DNA-646_Train": {
+    "model_name": "DNA-646_Train_strict_diffusion_noleak",
+    "model_type": "Strict Fold-internal Diffusion Augmentation + 3-Fold Ensemble Robust GNN + Validation-fixed Threshold",
+    "training_info": {
+      "original_positive": 14038,
+      "original_negative": 219203,
+      "original_ratio": 0.06018667386951694,
+      "avg_augmented_ratio": 0.10782286499379308,
+      "target_ratio": 0.3,
+      "cv_avg_f1": 0.5440270987569501,
+      "cv_avg_mcc": 0.5154119802446876,
+      "cv_avg_auc": 0.5356525762500449,
+      "best_cv_f1": 0.5663421418636996,
+      "best_cv_mcc": 0.5372031638375862,
+      "best_cv_auc": 0.5622117872121011,
+      "fixed_threshold_from_validation": 0.3966666666666667,
+      "fold_thresholds": [
+        0.39000000000000007,
+        0.4000000000000001,
+        0.4000000000000001
+      ],
+      "ensemble_type": "mean_probability_from_all_cv_fold_models",
+      "threshold_metric": "mcc",
+      "gnn_time": 3114.9941623210907,
+      "total_time": 3114.9941623210907
+    },
+    "augmentation_summary": {
+      "strict_diffusion": 0,
+      "relaxed_diffusion": 1188,
+      "failed_no_aug": 0,
+      "generated_nodes": 24884,
+      "fallback": 0,
+      "note": "All added synthetic nodes come from diffusion_model.generate_positive_sample; no real-positive copying fallback is used."
+    },
+    "robust_config": {
+      "quality_threshold": 0.7,
+      "diversity_threshold": 0.3,
+      "domain_weight": 0.1,
+      "cv_folds": 3,
+      "max_augment_ratio": 1.0,
+      "max_generated_per_protein": 64,
+      "target_ratio": 0.3,
+      "graph_metric": "cosine similarity KNN in ESM-2 embedding space",
+      "leakage_control": "diffusion, augmentation and threshold selection are fold-internal; test uses fixed validation threshold"
+    },
+    "cv_results": [
+      {
+        "val_f1": 0.5396327396881055,
+        "val_mcc": 0.5110185801099255,
+        "val_auc": 0.5205690412124648,
+        "threshold": 0.39000000000000007,
+        "augmented_ratio": 0.1057861723870604,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 396,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 8505
+        }
+      },
+      {
+        "val_f1": 0.5261064147190453,
+        "val_mcc": 0.4980141967865512,
+        "val_auc": 0.5241769003255687,
+        "threshold": 0.4000000000000001,
+        "augmented_ratio": 0.111190079862345,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 396,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 8319
+        }
+      },
+      {
+        "val_f1": 0.5663421418636996,
+        "val_mcc": 0.5372031638375862,
+        "val_auc": 0.5622117872121011,
+        "threshold": 0.4000000000000001,
+        "augmented_ratio": 0.10649234273197383,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 396,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 8060
+        }
+      }
+    ],
+    "test_results": {
+      "DNA-129_Test": {
+        "f1": 0.48204736440030554,
+        "mcc": 0.4494901556425952,
+        "auc_pr": 0.47768964446822326,
+        "accuracy": 0.9277089164334267,
+        "balanced_accuracy": 0.7571181153184166,
+        "precision": 0.4212283044058745,
+        "recall": 0.5633928571428571,
+        "sensitivity": 0.5633928571428571,
+        "specificity": 0.9508433734939759,
+        "auc_roc": 0.8917515693024197,
+        "threshold": 0.3966666666666667,
+        "confusion_matrix": {
+          "tp": 1262,
+          "tn": 33541,
+          "fp": 1734,
+          "fn": 978
+        },
+        "total_samples": 37515,
+        "positive_samples": 2240,
+        "negative_samples": 35275,
+        "positive_ratio": 0.05970944955351193
+      },
+      "DNA-181_Test": {
+        "f1": 0.379045996592845,
+        "mcc": 0.3495798452490617,
+        "auc_pr": 0.34033650522190334,
+        "accuracy": 0.9189849972217077,
+        "balanced_accuracy": 0.7187994199772786,
+        "precision": 0.3065442020665901,
+        "recall": 0.49646708813685386,
+        "sensitivity": 0.49646708813685386,
+        "specificity": 0.9411317518177034,
+        "auc_roc": 0.8526264485770834,
+        "threshold": 0.3966666666666667,
+        "confusion_matrix": {
+          "tp": 1335,
+          "tn": 48281,
+          "fp": 3020,
+          "fn": 1354
+        },
+        "total_samples": 53990,
+        "positive_samples": 2689,
+        "negative_samples": 51301,
+        "positive_ratio": 0.04980551954065568
+      },
+      "DNA-46_Test": {
+        "f1": 0.513788098693759,
+        "mcc": 0.4642272905234589,
+        "auc_pr": 0.5045388235275046,
+        "accuracy": 0.9075947039352703,
+        "balanced_accuracy": 0.7463231569256539,
+        "precision": 0.48185117967332125,
+        "recall": 0.550259067357513,
+        "sensitivity": 0.550259067357513,
+        "specificity": 0.9423872464937948,
+        "auc_roc": 0.8968560603882324,
+        "threshold": 0.3966666666666667,
+        "confusion_matrix": {
+          "tp": 531,
+          "tn": 9340,
+          "fp": 571,
+          "fn": 434
+        },
+        "total_samples": 10876,
+        "positive_samples": 965,
+        "negative_samples": 9911,
+        "positive_ratio": 0.08872747333578522
+      }
+    },
+    "new_test_results": {
+      "PDNA-316-test": {
+        "f1": 0.5095256361079147,
+        "mcc": 0.4799190252028556,
+        "auc_pr": 0.5076140935933638,
+        "accuracy": 0.8944965483099095,
+        "balanced_accuracy": 0.8101716416621181,
+        "precision": 0.397189275391209,
+        "recall": 0.7104653235870921,
+        "sensitivity": 0.7104653235870921,
+        "specificity": 0.909877959737144,
+        "auc_roc": 0.911830309426993,
+        "threshold": 0.3966666666666667,
+        "confusion_matrix": {
+          "tp": 3985,
+          "tn": 61061,
+          "fp": 6048,
+          "fn": 1624
+        },
+        "total_samples": 72718,
+        "positive_samples": 5609,
+        "negative_samples": 67109,
+        "positive_ratio": 0.07713358453202783
+      },
+      "PDNA-335-test": {
+        "f1": 0.5484974346445151,
+        "mcc": 0.5119548243848998,
+        "auc_pr": 0.5448986440126705,
+        "accuracy": 0.9015410844865938,
+        "balanced_accuracy": 0.8117385792055769,
+        "precision": 0.4494494494494494,
+        "recall": 0.7035412096521466,
+        "sensitivity": 0.7035412096521466,
+        "specificity": 0.9199359487590072,
+        "auc_roc": 0.916229769662287,
+        "threshold": 0.3966666666666667,
+        "confusion_matrix": {
+          "tp": 4490,
+          "tn": 63195,
+          "fp": 5500,
+          "fn": 1892
+        },
+        "total_samples": 75077,
+        "positive_samples": 6382,
+        "negative_samples": 68695,
+        "positive_ratio": 0.0850060604446102
+      },
+      "PDNA-41-test": {
+        "f1": 0.48056537102473496,
+        "mcc": 0.4474758335359378,
+        "auc_pr": 0.46765705021446463,
+        "accuracy": 0.9240859326585417,
+        "balanced_accuracy": 0.7597318178854271,
+        "precision": 0.41412911084043846,
+        "recall": 0.5723905723905723,
+        "sensitivity": 0.5723905723905723,
+        "specificity": 0.9470730633802817,
+        "auc_roc": 0.9028233479157775,
+        "threshold": 0.3966666666666667,
+        "confusion_matrix": {
+          "tp": 340,
+          "tn": 8607,
+          "fp": 481,
+          "fn": 254
+        },
+        "total_samples": 9682,
+        "positive_samples": 594,
+        "negative_samples": 9088,
+        "positive_ratio": 0.06135096054534187
+      },
+      "PDNA-52-test": {
+        "f1": 0.4736059479553903,
+        "mcc": 0.4504114463130237,
+        "auc_pr": 0.46420066952415484,
+        "accuracy": 0.9052462526766595,
+        "balanced_accuracy": 0.7964948996880362,
+        "precision": 0.3656716417910448,
+        "recall": 0.6719409282700421,
+        "sensitivity": 0.6719409282700421,
+        "specificity": 0.9210488711060303,
+        "auc_roc": 0.9178699188315408,
+        "threshold": 0.3966666666666667,
+        "confusion_matrix": {
+          "tp": 637,
+          "tn": 12891,
+          "fp": 1105,
+          "fn": 311
+        },
+        "total_samples": 14944,
+        "positive_samples": 948,
+        "negative_samples": 13996,
+        "positive_ratio": 0.06343683083511777
+      }
+    }
+  },
+  "PDNA-543-train": {
+    "model_name": "PDNA-543-train_strict_diffusion_noleak",
+    "model_type": "Strict Fold-internal Diffusion Augmentation + 3-Fold Ensemble Robust GNN + Validation-fixed Threshold",
+    "training_info": {
+      "original_positive": 9278,
+      "original_negative": 119002,
+      "original_ratio": 0.07232616152167134,
+      "avg_augmented_ratio": 0.12517864336074133,
+      "target_ratio": 0.3,
+      "cv_avg_f1": 0.4768211836088141,
+      "cv_avg_mcc": 0.43490611252710476,
+      "cv_avg_auc": 0.4490811679175708,
+      "best_cv_f1": 0.48268497330282223,
+      "best_cv_mcc": 0.4404882244122699,
+      "best_cv_auc": 0.47868593436969586,
+      "fixed_threshold_from_validation": 0.3333333333333334,
+      "fold_thresholds": [
+        0.4000000000000001,
+        0.32000000000000006,
+        0.28
+      ],
+      "ensemble_type": "mean_probability_from_all_cv_fold_models",
+      "threshold_metric": "mcc",
+      "gnn_time": 2418.6975631713867,
+      "total_time": 2418.6975631713867
+    },
+    "augmentation_summary": {
+      "strict_diffusion": 0,
+      "relaxed_diffusion": 1060,
+      "failed_no_aug": 0,
+      "generated_nodes": 15448,
+      "fallback": 0,
+      "note": "All added synthetic nodes come from diffusion_model.generate_positive_sample; no real-positive copying fallback is used."
+    },
+    "robust_config": {
+      "quality_threshold": 0.7,
+      "diversity_threshold": 0.3,
+      "domain_weight": 0.1,
+      "cv_folds": 3,
+      "max_augment_ratio": 1.0,
+      "max_generated_per_protein": 64,
+      "target_ratio": 0.3,
+      "graph_metric": "cosine similarity KNN in ESM-2 embedding space",
+      "leakage_control": "diffusion, augmentation and threshold selection are fold-internal; test uses fixed validation threshold"
+    },
+    "cv_results": [
+      {
+        "val_f1": 0.4783734783734784,
+        "val_mcc": 0.43079681288470556,
+        "val_auc": 0.4213575269292205,
+        "threshold": 0.4000000000000001,
+        "augmented_ratio": 0.1183743329151872,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 353,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 5069
+        }
+      },
+      {
+        "val_f1": 0.46940509915014167,
+        "val_mcc": 0.43343330028433885,
+        "val_auc": 0.44720004245379597,
+        "threshold": 0.32000000000000006,
+        "augmented_ratio": 0.13142719294214952,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 353,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 5127
+        }
+      },
+      {
+        "val_f1": 0.48268497330282223,
+        "val_mcc": 0.4404882244122699,
+        "val_auc": 0.47868593436969586,
+        "threshold": 0.28,
+        "augmented_ratio": 0.12573440422488721,
+        "augmentation_stats": {
+          "strict_diffusion": 0,
+          "relaxed_diffusion": 354,
+          "failed_no_aug": 0,
+          "no_positive": 0,
+          "generated_nodes": 5252
+        }
+      }
+    ],
+    "test_results": {
+      "DNA-129_Test": {
+        "f1": 0.4497741784768728,
+        "mcc": 0.4269696321023923,
+        "auc_pr": 0.4630692604868993,
+        "accuracy": 0.9058243369318939,
+        "balanced_accuracy": 0.783526247848537,
+        "precision": 0.3453719205931595,
+        "recall": 0.6446428571428572,
+        "sensitivity": 0.6446428571428572,
+        "specificity": 0.9224096385542169,
+        "auc_roc": 0.8990159018426648,
+        "threshold": 0.3333333333333334,
+        "confusion_matrix": {
+          "tp": 1444,
+          "tn": 32538,
+          "fp": 2737,
+          "fn": 796
+        },
+        "total_samples": 37515,
+        "positive_samples": 2240,
+        "negative_samples": 35275,
+        "positive_ratio": 0.05970944955351193
+      },
+      "DNA-181_Test": {
+        "f1": 0.3510020158899561,
+        "mcc": 0.3296790196017038,
+        "auc_pr": 0.3223204705821392,
+        "accuracy": 0.8986293758103352,
+        "balanced_accuracy": 0.7336365957851092,
+        "precision": 0.2576601671309192,
+        "recall": 0.5503904797322424,
+        "sensitivity": 0.5503904797322424,
+        "specificity": 0.9168827118379759,
+        "auc_roc": 0.861471339835654,
+        "threshold": 0.3333333333333334,
+        "confusion_matrix": {
+          "tp": 1480,
+          "tn": 47037,
+          "fp": 4264,
+          "fn": 1209
+        },
+        "total_samples": 53990,
+        "positive_samples": 2689,
+        "negative_samples": 51301,
+        "positive_ratio": 0.04980551954065568
+      },
+      "DNA-46_Test": {
+        "f1": 0.5338575797291393,
+        "mcc": 0.4880503832904689,
+        "auc_pr": 0.5241862545144909,
+        "accuracy": 0.9018940787054064,
+        "balanced_accuracy": 0.7806101766864995,
+        "precision": 0.46148036253776437,
+        "recall": 0.633160621761658,
+        "sensitivity": 0.633160621761658,
+        "specificity": 0.9280597316113409,
+        "auc_roc": 0.8932099833596732,
+        "threshold": 0.3333333333333334,
+        "confusion_matrix": {
+          "tp": 611,
+          "tn": 9198,
+          "fp": 713,
+          "fn": 354
+        },
+        "total_samples": 10876,
+        "positive_samples": 965,
+        "negative_samples": 9911,
+        "positive_ratio": 0.08872747333578522
+      }
+    },
+    "new_test_results": {
+      "PDNA-316-test": {
+        "f1": 0.5066009505368774,
+        "mcc": 0.48637340545343555,
+        "auc_pr": 0.5490751399821016,
+        "accuracy": 0.8843615060920267,
+        "balanced_accuracy": 0.8318022804234996,
+        "precision": 0.37755815987405983,
+        "recall": 0.7696559101444108,
+        "sensitivity": 0.7696559101444108,
+        "specificity": 0.8939486507025883,
+        "auc_roc": 0.9200422512550072,
+        "threshold": 0.3333333333333334,
+        "confusion_matrix": {
+          "tp": 4317,
+          "tn": 59992,
+          "fp": 7117,
+          "fn": 1292
+        },
+        "total_samples": 72718,
+        "positive_samples": 5609,
+        "negative_samples": 67109,
+        "positive_ratio": 0.07713358453202783
+      },
+      "PDNA-335-test": {
+        "f1": 0.5310553682646706,
+        "mcc": 0.4977378431861269,
+        "auc_pr": 0.54944046233532,
+        "accuracy": 0.8906855628221693,
+        "balanced_accuracy": 0.8169640478628879,
+        "precision": 0.41793326738016007,
+        "recall": 0.7281416483860859,
+        "sensitivity": 0.7281416483860859,
+        "specificity": 0.9057864473396899,
+        "auc_roc": 0.9158455142222663,
+        "threshold": 0.3333333333333334,
+        "confusion_matrix": {
+          "tp": 4647,
+          "tn": 62223,
+          "fp": 6472,
+          "fn": 1735
+        },
+        "total_samples": 75077,
+        "positive_samples": 6382,
+        "negative_samples": 68695,
+        "positive_ratio": 0.0850060604446102
+      },
+      "PDNA-41-test": {
+        "f1": 0.46,
+        "mcc": 0.43201507036793996,
+        "auc_pr": 0.46544888597723433,
+        "accuracy": 0.9107622392067755,
+        "balanced_accuracy": 0.7746630773699436,
+        "precision": 0.3658051689860835,
+        "recall": 0.6195286195286195,
+        "sensitivity": 0.6195286195286195,
+        "specificity": 0.9297975352112676,
+        "auc_roc": 0.9000159680727462,
+        "threshold": 0.3333333333333334,
+        "confusion_matrix": {
+          "tp": 368,
+          "tn": 8450,
+          "fp": 638,
+          "fn": 226
+        },
+        "total_samples": 9682,
+        "positive_samples": 594,
+        "negative_samples": 9088,
+        "positive_ratio": 0.06135096054534187
+      },
+      "PDNA-52-test": {
+        "f1": 0.4768120920645825,
+        "mcc": 0.4628284197147959,
+        "auc_pr": 0.47090313637999154,
+        "accuracy": 0.8980861884368309,
+        "balanced_accuracy": 0.8206993740224754,
+        "precision": 0.35354049923586345,
+        "recall": 0.7320675105485233,
+        "sensitivity": 0.7320675105485233,
+        "specificity": 0.9093312374964275,
+        "auc_roc": 0.9161522791924878,
+        "threshold": 0.3333333333333334,
+        "confusion_matrix": {
+          "tp": 694,
+          "tn": 12727,
+          "fp": 1269,
+          "fn": 254
+        },
+        "total_samples": 14944,
+        "positive_samples": 948,
+        "negative_samples": 13996,
+        "positive_ratio": 0.06343683083511777
+      }
+    }
+  }
+}
